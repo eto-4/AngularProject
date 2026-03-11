@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 @Injectable({
   providedIn: 'root',
 })
-export class Auth {
+export class AuthService {
 
     // Clau referencial que es fa servir per guardar l'usuari a localStorage
     private readonly STORAGE_KEY = 'current_user';
