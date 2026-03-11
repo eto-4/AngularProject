@@ -1,0 +1,9 @@
+{
+  "scripts": {
+    "postinstall": "cd backend && npm i && cd ../frontend && npm i",
+    "start": "concurrently \"cd backend && npm start\" \"cd frontend && npx ng serve --open\""
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.0"
+  }
+}
