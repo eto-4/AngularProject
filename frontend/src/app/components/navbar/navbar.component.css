@@ -1,0 +1,101 @@
+/* ─── Navbar principal ─── */
+nav.navbar {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.4);
+  padding: 0.8rem 0;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+/* ─── Logo / Brand ─── */
+.navbar-brand {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #e94560 !important;
+  letter-spacing: 1px;
+  transition: transform 0.2s ease;
+}
+
+.navbar-brand:hover {
+  transform: scale(1.05);
+}
+
+.brand-icon {
+  margin-right: 4px;
+}
+
+/* ─── Enllaços de navegació ─── */
+.nav-link {
+  color: #a8b2d8 !important;
+  font-weight: 500;
+  padding: 0.5rem 1rem !important;
+  border-radius: 6px;
+  transition: color 0.2s ease, background 0.2s ease;
+  margin: 0 2px;
+}
+
+.nav-link:hover {
+  color: #ffffff !important;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* ─── Enllaç actiu (ruta actual) ─── */
+.nav-link.active {
+  color: #e94560 !important;
+  background: rgba(233, 69, 96, 0.1);
+}
+
+/* ─── Botó "Nou Projecte" destacat ─── */
+.nav-link-create {
+  color: #64ffda !important;
+  font-weight: 600;
+}
+
+.nav-link-create:hover {
+  background: rgba(100, 255, 218, 0.1) !important;
+}
+
+.nav-link-create.active {
+  color: #64ffda !important;
+  background: rgba(100, 255, 218, 0.1) !important;
+}
+
+/* ─── Informació de l'usuari autenticat ─── */
+.user-info {
+  color: #64ffda !important;
+  font-weight: 600;
+  cursor: default;
+}
+
+/* ─── Botó Iniciar sessió ─── */
+.btn-login {
+  border: 1px solid #e94560 !important;
+  color: #e94560 !important;
+  border-radius: 20px !important;
+  padding: 0.4rem 1.2rem !important;
+  transition: all 0.2s ease;
+}
+
+.btn-login:hover {
+  background: #e94560 !important;
+  color: #ffffff !important;
+}
+
+/* ─── Botó Tancar sessió ─── */
+.btn-logout {
+  background: transparent;
+  border: 1px solid #a8b2d8;
+  color: #a8b2d8;
+  border-radius: 20px;
+  padding: 0.4rem 1.2rem;
+  font-size: 0.85rem;
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.btn-logout:hover {
+  background: rgba(168, 178, 216, 0.15);
+  color: #ffffff;
+  border-color: #ffffff;
+}
