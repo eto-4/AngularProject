@@ -1,1 +1,92 @@
-<p>navbar works!</p>
+<!-- Navbar de Bootstrap amb tema fosc -->
+<nav class="navbar navbar-expand-lg navbar-dark">
+
+  <!-- Logo / Títol de l'app -->
+  <div class="container">
+    <a class="navbar-brand" [routerLink]="['/about']">
+      <span class="brand-icon">⚡</span> Portfolio
+    </a>
+
+    <!-- Botó hamburguesa per a mòbils (Bootstrap) -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarMenu"
+      aria-controls="navbarMenu"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Menú de navegació -->
+    <div class="collapse navbar-collapse" id="navbarMenu">
+
+      <!-- Enllaços de navegació (esquerra) -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link"
+             [routerLink]="['/about']"
+             routerLinkActive="active">
+            Inici
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"
+             [routerLink]="['/projects']"
+             routerLinkActive="active">
+            Projectes
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"
+             [routerLink]="['/contact']"
+             routerLinkActive="active">
+            Contacte
+          </a>
+        </li>
+
+        <!-- Opció "Nou Projecte" només visible si l'usuari està autenticat -->
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <a class="nav-link nav-link-create"
+             [routerLink]="['/create']"
+             routerLinkActive="active">
+            + Nou Projecte
+          </a>
+        </li>
+
+      </ul>
+
+      <!-- Zona dreta: login o informació de sessió -->
+      <ul class="navbar-nav ms-auto">
+
+        <!-- Si NO hi ha sessió: mostrem el botó Login -->
+        <li class="nav-item" *ngIf="!isLoggedIn">
+          <a class="nav-link btn-login"
+             [routerLink]="['/login']"
+             routerLinkActive="active">
+            Iniciar sessió
+          </a>
+        </li>
+
+        <!-- Si SÍ hi ha sessió: mostrem l'usuari i el botó Logout -->
+        <li class="nav-item dropdown" *ngIf="isLoggedIn">
+          <span class="nav-link user-info">
+            &#128100; {{ currentUser }}
+          </span>
+        </li>
+
+        <li class="nav-item" *ngIf="isLoggedIn">
+          <button class="btn btn-logout" (click)="logout()">
+            Tancar sessió
+          </button>
+        </li>
+
+      </ul>
+
+    </div>
+  </div>
+</nav>
