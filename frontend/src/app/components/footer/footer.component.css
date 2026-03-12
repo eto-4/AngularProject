@@ -1,0 +1,28 @@
+/* ─── Footer principal ─── */
+.footer {
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  color: #a8b2d8;
+  padding: 1.2rem 0;
+  border-top: 1px solid rgba(233, 69, 96, 0.3);
+  margin-top: auto;
+}
+
+/* ─── Nom del projecte al footer ─── */
+.footer-brand {
+  color: #e94560;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+/* ─── Text de copyright ─── */
+.footer-copy {
+  font-size: 0.85rem;
+  color: #6b7280;
+}
+
+/* ─── Stack tecnològic ─── */
+.footer-stack {
+  font-size: 0.8rem;
+  color: #64ffda;
+  font-weight: 500;
+}
