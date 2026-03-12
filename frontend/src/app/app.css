@@ -1,0 +1,12 @@
+/* Estructura principal que ocupa tota l'alçada de la pantalla */
+.app-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* El contingut principal creix per ocupar l'espai disponible */
+/* Això fa que el footer sempre quedi a baix */
+.main-content {
+  flex: 1;
+}
