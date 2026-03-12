@@ -10,6 +10,6 @@ import { Component } from '@angular/core';
   styleUrl: './footer.component.css'
 })
 export class FooterComponent {
-  // Any actual per mostrar al copyright
+  // Any actual per mostrar al copyright del footer.
   currentYear: number = new Date().getFullYear();
 }
