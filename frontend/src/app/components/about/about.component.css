@@ -1,0 +1,108 @@
+.about-page {
+  background: radial-gradient(ellipse at top, #1a1a2e 0%, #0f0f1a 100%);
+  min-height: calc(100vh - 120px);
+}
+
+/* ─── Hero ─── */
+.hero-section { padding: 6rem 0 4rem; }
+
+.hero-badge {
+  display: inline-block;
+  background: rgba(233, 69, 96, 0.15);
+  border: 1px solid rgba(233, 69, 96, 0.3);
+  color: #e94560;
+  border-radius: 20px;
+  padding: 0.4rem 1.2rem;
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.hero-title {
+  font-size: clamp(2.2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  color: #e2e8f0;
+  line-height: 1.2;
+}
+
+.highlight { color: #e94560; }
+
+.hero-subtitle {
+  font-size: 1.15rem;
+  color: #a8b2d8;
+  line-height: 1.7;
+}
+
+.btn-primary-custom {
+  background: linear-gradient(135deg, #e94560, #c73652);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  padding: 0.85rem 2rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-primary-custom:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(233, 69, 96, 0.4);
+  color: white;
+}
+
+.btn-outline-custom {
+  background: transparent;
+  border: 1px solid #64ffda;
+  border-radius: 8px;
+  color: #64ffda;
+  font-weight: 600;
+  padding: 0.85rem 2rem;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-custom:hover {
+  background: rgba(100, 255, 218, 0.1);
+  transform: translateY(-2px);
+  color: #64ffda;
+}
+
+/* ─── Tecnologies ─── */
+.tech-section { padding: 4rem 0 5rem; }
+
+.section-title {
+  color: #e2e8f0;
+  font-size: 1.8rem;
+  font-weight: 700;
+}
+
+.tech-card {
+  background: #16213e;
+  border: 1px solid rgba(168, 178, 216, 0.1);
+  border-radius: 12px;
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.tech-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(233, 69, 96, 0.3);
+}
+
+.tech-icon {
+  font-size: 2.5rem;
+  color: #e94560;
+}
+
+.tech-card h3 {
+  color: #e2e8f0;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.tech-card p {
+  color: #6b7280;
+  font-size: 0.85rem;
+  margin: 0;
+  line-height: 1.5;
+}
