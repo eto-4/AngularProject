@@ -1,1 +1,156 @@
-<p>create works!</p>
+<div class="create-page">
+    <div class="container py-5">
+
+        <!-- Botó tornar -->
+        <div class="row mb-4">
+            <div class="col">
+                <a [routerLink]="['/projects']" class="btn-back">
+                    <i class="bi bi-arrow-left me-2"></i>Tornar als projectes
+                </a>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-12 col-md-10 col-lg-8">
+
+                <div class="form-card p-4 p-md-5">
+
+                    <!-- Capçalera -->
+                    <div class="mb-4">
+                        <h1 class="form-title">
+                            <i class="bi bi-plus-circle-fill me-2"></i>Nou Projecte
+                        </h1>
+                        <p class="form-subtitle">Omple els camps per afegir un nou projecte al portfolio</p>
+                    </div>
+
+                    <!-- Missatges de feedback -->
+                    <div class="alert-error p-3 mb-4" *ngIf="errorMessage">
+                        <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ errorMessage }}
+                    </div>
+
+                    <!-- Formulari reactiu -->
+                    <form [formGroup]="projectForm" (ngSubmit)="onSubmit()">
+
+                        <!-- Nom -->
+                        <div class="mb-4">
+                          <label for="name" class="form-label">
+                              Nom del projecte <span class="required">*</span>
+                          </label>
+                          <input
+                              type="text"
+                              id="name"
+                              class="form-control custom-input"
+                              formControlName="name"
+                              placeholder="Ex: Portfolio Web"
+                              [class.is-invalid]="projectForm.get('name')?.invalid && projectForm.get('name')?.touched">
+                          <div class="invalid-feedback">El nom és obligatori.</div>
+                        </div>
+
+                        <!-- Descripció -->
+                        <div class="mb-4">
+                              <label for="description" class="form-label">
+                                  Descripció <span class="required">*</span>
+                              </label>
+                              <textarea
+                                id="description"
+                                class="form-control custom-input"
+                                formControlName="description"
+                                rows="4"
+                                placeholder="Descriu el projecte..."
+                                [class.is-invalid]="projectForm.get('description')?.invalid && projectForm.get('description')?.touched">
+                              </textarea>
+                              <div class="invalid-feedback">La descripció és obligatòria.</div>
+                        </div>
+
+                        <!-- Categoria i Any en la mateixa fila -->
+                        <div class="row g-3 mb-4">
+                            <div class="col-12 col-sm-8">
+                                <label for="category" class="form-label">
+                                    Categoria <span class="required">*</span>
+                                </label>
+                                <input
+                                    type="text"
+                                    id="category"
+                                    class="form-control custom-input"
+                                    formControlName="category"
+                                    placeholder="Ex: Web, Mobile, API..."
+                                    [class.is-invalid]="projectForm.get('category')?.invalid && projectForm.get('category')?.touched">
+                                <div class="invalid-feedback">La categoria és obligatòria.</div>
+                            </div>
+                            <div class="col-12 col-sm-4">
+                                <label for="year" class="form-label">Any</label>
+                                <input
+                                    type="number"
+                                    id="year"
+                                    class="form-control custom-input"
+                                    formControlName="year"
+                                    placeholder="2025">
+                            </div>
+                        </div>
+
+                        <!-- Tecnologies -->
+                        <div class="mb-4">
+                            <label for="langs" class="form-label">
+                                Tecnologies <span class="required">*</span>
+                            </label>
+                            <input
+                                type="text"
+                                id="langs"
+                                class="form-control custom-input"
+                                formControlName="langs"
+                                placeholder="Ex: Angular, Node.js, MongoDB"
+                                [class.is-invalid]="projectForm.get('langs')?.invalid && projectForm.get('langs')?.touched">
+                            <div class="invalid-feedback">Les tecnologies són obligatòries.</div>
+                        </div>
+
+                        <!-- Imatge -->
+                        <div class="mb-5">
+                            <label class="form-label">Imatge del projecte</label>
+                            <div class="image-upload-area"
+                                   [class.has-preview]="imagePreview">
+
+                                <!-- Previsualització si hi ha imatge seleccionada -->
+                                <img *ngIf="imagePreview"
+                                    [src]="imagePreview"
+                                    alt="Previsualització"
+                                    class="image-preview">
+
+                                <!-- Zona de selecció si no hi ha imatge -->
+                                <div class="upload-placeholder" *ngIf="!imagePreview">
+                                    <i class="bi bi-cloud-upload upload-icon"></i>
+                                    <p class="mt-2 mb-0">Fes clic per seleccionar una imatge</p>
+                                    <small>PNG, JPG fins a 5MB</small>
+                                </div>
+
+                                <input
+                                    type="file"
+                                    accept="image/*"
+                                    class="file-input"
+                                    (change)="onImageSelected($event)">
+                            </div>
+                        </div>
+
+                        <!-- Botons -->
+                        <div class="d-flex gap-3 justify-content-end flex-wrap">
+                            <a [routerLink]="['/projects']" class="btn btn-cancel-form">
+                                Cancel·lar
+                            </a>
+                            <button
+                                type="submit"
+                                class="btn btn-submit"
+                                [disabled]="projectForm.invalid || loading">
+                                <span *ngIf="loading">
+                                    <i class="bi bi-hourglass-split me-2"></i>Guardant...
+                                </span>
+                                <span *ngIf="!loading">
+                                    <i class="bi bi-check-circle me-2"></i>Crear Projecte
+                                </span>
+                            </button>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
