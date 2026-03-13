@@ -1,1 +1,72 @@
-<p>projects works!</p>
+<div class="projects-page">
+    <div class="container py-5">
+
+        <!-- Capçalera -->
+        <div class="row align-items-center mb-5">
+            <div class="col">
+                <h1 class="page-title">Projectes</h1>
+                <p class="page-subtitle">Tots els projectes del portfolio</p>
+            </div>
+            <div class="col-auto" *ngIf="isLoggedIn">
+                <a [routerLink]="['/create']" class="btn btn-create">
+                    <i class="bi bi-plus-lg me-1"></i> Nou Projecte
+                </a>
+            </div>
+        </div>
+      
+        <!-- Estat: carregant -->
+        <div class="row justify-content-center py-5" *ngIf="loading">
+            <div class="col-auto text-center">
+                <div class="spinner"></div>
+                <p class="loading-text mt-3">Carregant projectes...</p>
+            </div>
+        </div>
+      
+        <!-- Estat: error -->
+        <div class="alert-error p-3 mb-4" *ngIf="errorMessage && !loading">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ errorMessage }}
+        </div>
+      
+        <!-- Estat: sense projectes -->
+        <div class="row justify-content-center py-5"
+                *ngIf="!loading && !errorMessage && projects.length === 0">
+            <div class="col-12 col-md-6 text-center">
+                <i class="bi bi-inbox empty-icon"></i>
+                <h3 class="mt-3">Encara no hi ha projectes</h3>
+                <p>Crea el primer projecte per començar.</p>
+                <a *ngIf="isLoggedIn" [routerLink]="['/create']" class="btn btn-create mt-2">
+                    <i class="bi bi-plus-lg me-1"></i> Nou Projecte
+                </a>
+            </div>
+        </div>
+      
+        <!-- Graella de projectes -->
+        <div class="row g-4" *ngIf="!loading && projects.length > 0">
+            <div class="col-12 col-sm-6 col-lg-4" *ngFor="let project of projects">
+                <div class="project-card h-100 d-flex flex-column">
+                    
+                    <div class="card-image-wrapper">
+                      <img
+                        [src]="getImageUrl(project.image || '')"
+                        [alt]="project.name"
+                        class="card-img">
+                    </div>
+                  
+                    <div class="card-body-custom d-flex flex-column p-4 flex-grow-1">
+                        <span class="card-category">{{ project.category }}</span>
+                        <h3 class="card-title mt-2">{{ project.name }}</h3>
+                        <p class="card-langs">
+                            <i class="bi bi-wrench me-1"></i>{{ project.langs }}
+                        </p>
+                        <a [routerLink]="['/detail', project._id]"
+                            class="btn btn-detail w-100 mt-auto">
+                            Veure detall <i class="bi bi-arrow-right ms-1"></i>
+                        </a>
+                    </div>
+                
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
