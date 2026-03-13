@@ -57,7 +57,7 @@ export class DetailComponent implements OnInit {
     // Construeix la URL de la imatge
     getImageUrl(imageName: string): string {
         if (!imageName || imageName === 'null') {
-            return 'assets/default-project.png';
+            return 'https://placehold.co/600x400/16213e/a8b2d8?text=Sense+imatge';
         }
         return this.projectService.getImageUrl(imageName);
     }

@@ -55,7 +55,7 @@ export class ProjectsComponent implements OnInit {
     getImageUrl(imageName: string): string {
         // Si no té imatge assignada o és "null", retornem una imatge per defecte
         if (!imageName || imageName === 'null') {
-            return 'assets/default-project.png';
+            return 'https://placehold.co/600x400/16213e/a8b2d8?text=Sense+imatge';
         }
         return this.projectService.getImageUrl(imageName);
     }
