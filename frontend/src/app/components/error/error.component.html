@@ -1,1 +1,24 @@
-<p>error works!</p>
+<div class="error-page">
+    <div class="container">
+        <div class="row justify-content-center align-items-center" style="min-height: calc(100vh - 120px)">
+            <div class="col-12 col-md-8 col-lg-6 text-center">
+
+                <div class="error-code">404</div>
+                <h1 class="error-title">Pàgina no trobada</h1>
+                <p class="error-subtitle">
+                    La pàgina que estàs buscant no existeix o ha estat moguda.
+                </p>
+
+                <div class="d-flex gap-3 justify-content-center flex-wrap mt-4">
+                    <a [routerLink]="['/about']" class="btn btn-home">
+                        <i class="bi bi-house-fill me-2"></i>Anar a l'inici
+                    </a>
+                    <a [routerLink]="['/projects']" class="btn btn-projects">
+                        <i class="bi bi-grid-fill me-2"></i>Veure projectes
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
