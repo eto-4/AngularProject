@@ -1,1 +1,62 @@
-<p>login works!</p>
+<div class="login-page">
+  <div class="container">
+    <div class="row justify-content-center align-items-center" style="min-height: calc(100vh - 120px)">
+      <div class="col-12 col-sm-10 col-md-7 col-lg-5">
+        <div class="login-card">
+
+          <div class="text-center mb-4">
+            <i class="bi bi-lock-fill login-icon"></i>
+            <h2 class="mt-3">Iniciar sessió</h2>
+            <p class="text-muted">Accedeix per gestionar els projectes</p>
+          </div>
+
+          <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+
+            <div class="mb-4">
+              <label for="username" class="form-label">Usuari</label>
+              <input
+                type="text"
+                id="username"
+                class="form-control custom-input"
+                formControlName="username"
+                placeholder="Introdueix el teu usuari"
+                [class.is-invalid]="loginForm.get('username')?.invalid && loginForm.get('username')?.touched">
+              <div class="invalid-feedback">El camp usuari és obligatori.</div>
+            </div>
+
+            <div class="mb-4">
+              <label for="password" class="form-label">Contrasenya</label>
+              <input
+                type="password"
+                id="password"
+                class="form-control custom-input"
+                formControlName="password"
+                placeholder="Introdueix la teva contrasenya"
+                [class.is-invalid]="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">
+              <div class="invalid-feedback">El camp contrasenya és obligatori.</div>
+            </div>
+
+            <div class="alert-error mb-3" *ngIf="errorMessage">
+              <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ errorMessage }}
+            </div>
+
+            <button
+              type="submit"
+              class="btn btn-login w-100"
+              [disabled]="loginForm.invalid">
+              Entrar
+            </button>
+
+          </form>
+
+          <div class="demo-info mt-4">
+            <p class="mb-2"><i class="bi bi-flask me-1"></i> Usuaris de prova:</p>
+            <code>admin / 1234</code><br>
+            <code>user / user</code>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
