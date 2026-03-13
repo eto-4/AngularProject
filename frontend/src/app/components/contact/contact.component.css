@@ -1,0 +1,102 @@
+.contact-page {
+  background: #0f0f1a;
+  min-height: calc(100vh - 120px);
+}
+
+.contact-icon {
+  font-size: 3rem;
+  color: #e94560;
+}
+
+.page-title {
+  color: #e2e8f0;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.page-subtitle {
+  color: #6b7280;
+}
+
+.form-card {
+  background: #16213e;
+  border: 1px solid rgba(168, 178, 216, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+}
+
+.form-label {
+  color: #a8b2d8;
+  font-weight: 500;
+  margin-bottom: 0.4rem;
+}
+
+.required { color: #e94560; }
+
+.custom-input {
+  background: #0f0f1a;
+  border: 1px solid rgba(168, 178, 216, 0.2);
+  border-radius: 8px;
+  color: #e2e8f0;
+  padding: 0.75rem 1rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.custom-input:focus {
+  background: #0f0f1a;
+  border-color: #e94560;
+  box-shadow: 0 0 0 3px rgba(233, 69, 96, 0.15);
+  color: #e2e8f0;
+}
+
+.custom-input::placeholder { color: #4a5568; }
+
+.btn-send {
+  background: linear-gradient(135deg, #e94560, #c73652);
+  border: none;
+  border-radius: 8px;
+  color: white;
+  font-weight: 600;
+  padding: 0.85rem;
+  transition: all 0.2s ease;
+}
+
+.btn-send:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(233, 69, 96, 0.4);
+}
+
+.btn-send:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* ─── Targeta d'èxit ─── */
+.success-card {
+  background: rgba(100, 255, 218, 0.05);
+  border: 1px solid rgba(100, 255, 218, 0.2);
+  border-radius: 16px;
+}
+
+.success-icon {
+  font-size: 3rem;
+  color: #64ffda;
+}
+
+.success-card h4 { color: #e2e8f0; font-weight: 700; }
+.success-card p { color: #a8b2d8; }
+
+.btn-outline-send {
+  background: transparent;
+  border: 1px solid #64ffda;
+  border-radius: 8px;
+  color: #64ffda;
+  font-weight: 600;
+  padding: 0.6rem 1.5rem;
+  transition: all 0.2s ease;
+}
+
+.btn-outline-send:hover {
+  background: rgba(100, 255, 218, 0.1);
+  color: #64ffda;
+}
