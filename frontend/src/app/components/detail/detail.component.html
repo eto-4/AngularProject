@@ -1,106 +1,106 @@
 <div class="detail-page">
-  <div class="container py-5">
+    <div class="container py-5">
 
-    <!-- Botó tornar -->
-    <div class="row mb-4">
-      <div class="col">
-        <a [routerLink]="['/projects']" class="btn-back">
-          <i class="bi bi-arrow-left me-2"></i>Tornar als projectes
-        </a>
-      </div>
-    </div>
-
-    <!-- Estat: carregant -->
-    <div class="row justify-content-center py-5" *ngIf="loading">
-      <div class="col-auto text-center">
-        <div class="spinner"></div>
-        <p class="loading-text mt-3">Carregant projecte...</p>
-      </div>
-    </div>
-
-    <!-- Estat: error -->
-    <div class="alert-error p-3" *ngIf="errorMessage && !loading">
-      <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ errorMessage }}
-    </div>
-
-    <!-- Contingut del projecte -->
-    <div *ngIf="!loading && !errorMessage">
-
-      <div class="row g-5 align-items-start">
-
-        <!-- Columna esquerra: imatge -->
-        <div class="col-12 col-md-5">
-          <div class="image-wrapper">
-            <img
-              [src]="getImageUrl(project.image || '')"
-              [alt]="project.name"
-              class="project-image w-100">
-          </div>
-        </div>
-
-        <!-- Columna dreta: informació -->
-        <div class="col-12 col-md-7">
-
-          <span class="badge-category">{{ project.category }}</span>
-          <h1 class="project-title mt-3">{{ project.name }}</h1>
-
-          <p class="project-description mt-3">{{ project.description }}</p>
-
-          <!-- Metadades -->
-          <div class="row g-3 mt-2">
-            <div class="col-6">
-              <div class="meta-card p-3">
-                <p class="meta-label">
-                  <i class="bi bi-wrench me-1"></i> Tecnologies
-                </p>
-                <p class="meta-value">{{ project.langs }}</p>
-              </div>
+        <!-- Botó tornar -->
+        <div class="row mb-4">
+            <div class="col">
+                <a [routerLink]="['/projects']" class="btn-back">
+                    <i class="bi bi-arrow-left me-2"></i>Tornar als projectes
+                </a>
             </div>
-            <div class="col-6">
-              <div class="meta-card p-3">
-                <p class="meta-label">
-                  <i class="bi bi-calendar me-1"></i> Any
-                </p>
-                <p class="meta-value">{{ project.year }}</p>
-              </div>
+        </div>
+      
+        <!-- Estat: carregant -->
+        <div class="row justify-content-center py-5" *ngIf="loading">
+            <div class="col-auto text-center">
+                <div class="spinner"></div>
+                <p class="loading-text mt-3">Carregant projecte...</p>
             </div>
-          </div>
-
-          <!-- Botons d'acció (només si l'usuari és autenticat) -->
-          <div class="d-flex gap-3 mt-4 flex-wrap" *ngIf="isLoggedIn">
-            <a [routerLink]="['/edit', project._id]" class="btn btn-edit">
-              <i class="bi bi-pencil-fill me-2"></i>Editar
-            </a>
-            <button class="btn btn-delete" (click)="confirmDelete()">
-              <i class="bi bi-trash-fill me-2"></i>Eliminar
-            </button>
-          </div>
-
         </div>
-      </div>
-
-      <!-- Diàleg de confirmació d'eliminació -->
-      <div class="overlay" *ngIf="showDeleteConfirm">
-        <div class="confirm-dialog">
-          <div class="text-center mb-3">
-            <i class="bi bi-exclamation-triangle-fill confirm-icon"></i>
-          </div>
-          <h4 class="text-center mb-2">Eliminar projecte</h4>
-          <p class="text-center mb-4">
-            Estàs segur que vols eliminar <strong>{{ project.name }}</strong>?
-            Aquesta acció no es pot desfer.
-          </p>
-          <div class="d-flex gap-3 justify-content-center">
-            <button class="btn btn-cancel" (click)="cancelDelete()">
-              Cancel·lar
-            </button>
-            <button class="btn btn-confirm-delete" (click)="deleteProject()">
-              <i class="bi bi-trash-fill me-1"></i> Sí, eliminar
-            </button>
-          </div>
+      
+        <!-- Estat: error -->
+        <div class="alert-error p-3" *ngIf="errorMessage && !loading">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>{{ errorMessage }}
         </div>
-      </div>
-
+      
+        <!-- Contingut del projecte -->
+        <div *ngIf="!loading && !errorMessage">
+            
+            <div class="row g-5 align-items-start">
+                
+                <!-- Columna esquerra: imatge -->
+                <div class="col-12 col-md-5">
+                    <div class="image-wrapper">
+                        <img
+                          [src]="getImageUrl(project.image || '')"
+                          [alt]="project.name"
+                          class="project-image w-100">
+                    </div>
+                </div>
+              
+                <!-- Columna dreta: informació -->
+                <div class="col-12 col-md-7">
+                  
+                    <span class="badge-category">{{ project.category }}</span>
+                    <h1 class="project-title mt-3">{{ project.name }}</h1>
+                    
+                    <p class="project-description mt-3">{{ project.description }}</p>
+                    
+                    <!-- Metadades -->
+                    <div class="row g-3 mt-2">
+                        <div class="col-6">
+                            <div class="meta-card p-3">
+                                <p class="meta-label">
+                                    <i class="bi bi-wrench me-1"></i> Tecnologies
+                                </p>
+                                <p class="meta-value">{{ project.langs }}</p>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="meta-card p-3">
+                                <p class="meta-label">
+                                    <i class="bi bi-calendar me-1"></i> Any
+                                </p>
+                                <p class="meta-value">{{ project.year }}</p>
+                            </div>
+                        </div>
+                    </div>
+                
+                    <!-- Botons d'acció (només si l'usuari és autenticat) -->
+                    <div class="d-flex gap-3 mt-4 flex-wrap" *ngIf="isLoggedIn">
+                        <a [routerLink]="['/edit', project._id]" class="btn btn-edit">
+                            <i class="bi bi-pencil-fill me-2"></i>Editar
+                        </a>
+                        <button class="btn btn-delete" (click)="confirmDelete()">
+                            <i class="bi bi-trash-fill me-2"></i>Eliminar
+                        </button>
+                    </div>
+                
+                </div>
+            </div>
+        
+            <!-- Diàleg de confirmació d'eliminació -->
+            <div class="overlay" *ngIf="showDeleteConfirm">
+                <div class="confirm-dialog">
+                    <div class="text-center mb-3">
+                        <i class="bi bi-exclamation-triangle-fill confirm-icon"></i>
+                    </div>
+                    <h4 class="text-center mb-2">Eliminar projecte</h4>
+                    <p class="text-center mb-4">
+                        Estàs segur que vols eliminar <strong>{{ project.name }}</strong>?
+                        Aquesta acció no es pot desfer.
+                    </p>
+                    <div class="d-flex gap-3 justify-content-center">
+                        <button class="btn btn-cancel" (click)="cancelDelete()">
+                            Cancel·lar
+                        </button>
+                        <button class="btn btn-confirm-delete" (click)="deleteProject()">
+                            <i class="bi bi-trash-fill me-1"></i> Sí, eliminar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        
+        </div>
     </div>
-  </div>
 </div>
