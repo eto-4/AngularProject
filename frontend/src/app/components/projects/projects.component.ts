@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProjectService } from '../../services/project/project.service';
@@ -26,7 +26,8 @@ export class ProjectsComponent implements OnInit {
 
     constructor(
         private projectService: ProjectService,
-        private authService: AuthService
+        private authService: AuthService,
+        private cdr: ChangeDetectorRef
     ) {}
 
     // S'executa quan el component s'inicialitza: carrega els projectes
@@ -39,14 +40,17 @@ export class ProjectsComponent implements OnInit {
         this.loading = true;
         this.projectService.getProjects().subscribe({
             next: (response) => {
+                console.log('Resposta del backend:', response);
                 // El backend retorna { projects: [...] }
-                this.projects = response.projects;
+                this.projects = response.projects || [];
                 this.loading = false;
+                this.cdr.detectChanges();
             },
             error: (err) => {
                 console.error('Error carregant projectes:', err);
                 this.errorMessage = 'No s\'han pogut carregar els projectes.';
                 this.loading = false;
+                this.cdr.detectChanges();
             }
         });
     }
