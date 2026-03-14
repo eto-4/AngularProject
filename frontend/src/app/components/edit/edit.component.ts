@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -32,7 +32,8 @@ export class EditComponent implements OnInit {
         private fb: FormBuilder,
         private route: ActivatedRoute,
         private router: Router,
-        private projectService: ProjectService
+        private projectService: ProjectService,
+        private cdr: ChangeDetectorRef
     ) {
         // Inicialitzem el formulari buit (es carregarà amb les dades del projecte)
         this.projectForm = this.fb.group({
@@ -69,11 +70,14 @@ export class EditComponent implements OnInit {
                     year:        project.year
                 });
                 this.loading = false;
+                this.cdr.detectChanges();
+
             },
             error: (err) => {
                 console.error('Error carregant el projecte:', err);
                 this.errorMessage = 'No s\'ha pogut carregar el projecte.';
                 this.loading = false;
+                this.cdr.detectChanges();
             }
         });
     }
