@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { ActivatedRoute, Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ProjectService } from '../../services/project/project.service';
@@ -27,7 +27,8 @@ export class DetailComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private projectService: ProjectService,
-        private authService: AuthService
+        private authService: AuthService,
+        private cdr: ChangeDetectorRef
     ) {}
 
     ngOnInit(): void {
@@ -45,11 +46,13 @@ export class DetailComponent implements OnInit {
             next: (response) => {
                 this.project = response.project;
                 this.loading = false;
+                this.cdr.detectChanges();
             },
             error: (err) => {
                 console.error('Error carregant el projecte:', err);
                 this.errorMessage = 'No s\'ha pogut carregar el projecte.';
                 this.loading = false;
+                this.cdr.detectChanges();
             }
         });
     }
