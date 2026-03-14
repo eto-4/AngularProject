@@ -11,7 +11,6 @@ export class AuthService {
     // Usuaris disponibles hardcodejats.
     private readonly VALID_USERS = [
         { username: 'admin', password: '1234' },
-        { username: 'user', password: 'user' }
     ];
 
     constructor() {}
