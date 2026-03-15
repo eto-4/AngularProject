@@ -5,7 +5,7 @@ import { provideHttpClient } from '@angular/common/http';
 import { routes } from './app.routes';
 import { provideStore } from '@ngrx/store';
 import { authReducer } from './store/auth.reducer';
-
+import { provideStoreDevtools } from '@ngrx/store-devtools';
 
 // Configuració principal de l'aplicació Angular (standalone)
 // Aquí registrem els providers globals: router i httpClient
@@ -21,6 +21,11 @@ export const appConfig: ApplicationConfig = {
     provideHttpClient(),
 
     // Registrem el Store amb el reducer d'autenticació
-    provideStore({ auth: authReducer })
+    provideStore({ auth: authReducer }),
+
+    provideStoreDevtools({
+        maxAge: 25,
+        logOnly: false
+    })
   ]
 };
