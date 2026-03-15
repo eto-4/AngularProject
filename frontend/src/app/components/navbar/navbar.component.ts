@@ -18,9 +18,8 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent implements OnInit {
-    // Observables del Store
-    isLoggedIn$!: Observable<boolean>;
-    currentUser$!: Observable<string | null>;
+    isLoggedIn: boolean = false;
+    currentUser: string | null = null;
 
     constructor(
         private authService: AuthService,
@@ -29,15 +28,21 @@ export class NavbarComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
-        // Subscrivim els observables dels Store
-        this.isLoggedIn$ = this.authService.isLoggedIn$();
-        this.currentUser$ = this.authService.getCurrentUser$();
+        // Ens subscrivim directament i forcem la detecció de canvis
+        this.authService.isLoggedIn$().subscribe(value => {
+            this.isLoggedIn = value;
+            this.cdr.detectChanges();
+        });
+
+        this.authService.getCurrentUser$().subscribe(value => {
+            this.currentUser = value;
+            this.cdr.detectChanges();
+        });
     }
 
     // Tanca la sessió i redirigeix a /about
     logout(): void {
         this.authService.logout();
-        this.cdr.detectChanges();
         this.router.navigate(['/about']);
     }
 }
