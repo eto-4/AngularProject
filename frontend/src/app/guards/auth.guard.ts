@@ -1,18 +1,23 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { AuthService } from '../services/auth/auth.service';
+import { Store } from '@ngrx/store';
+import { map, take } from 'rxjs/operators';
+import { selectIsLoggedIn } from '../store/auth.selectors';
 
-// Si l'usuari no està autenticat, el redirigeix al login
 export const authGuard: CanActivateFn = (route, state) => {
+  const store = inject(Store);
+  const router = inject(Router);
 
-    // Inject dels serveis necessaris.
-    const authService = inject(AuthService);
-    const router = inject(Router);
-
-    if ( authService.isLoggedIn()) {
+  return store.select(selectIsLoggedIn).pipe(
+    // Agafem només el primer valor i completem
+    take(1),
+    map(isLoggedIn => {
+      if (isLoggedIn) {
         return true;
-    } else {
+      } else {
         router.navigate(['/login']);
         return false;
-    }
+      }
+    })
+  );
 };
