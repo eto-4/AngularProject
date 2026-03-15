@@ -3,6 +3,8 @@ import { provideRouter } from '@angular/router';
 import { provideHttpClient } from '@angular/common/http';
 
 import { routes } from './app.routes';
+import { provideStore } from '@ngrx/store';
+import { authReducer } from './store/auth.reducer';
 
 
 // Configuració principal de l'aplicació Angular (standalone)
@@ -16,6 +18,9 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     
     // Registrem HttpClient per poder fer peticions HTTP als serveis
-    provideHttpClient()
+    provideHttpClient(),
+
+    // Registrem el Store amb el reducer d'autenticació
+    provideStore({ auth: authReducer })
   ]
 };
