@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProjectService } from '../../services/project/project.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { Project } from '../../models/project.model';
+import { Observable } from 'rxjs';
 
 // Component que mostra la llista de tots els projectes
 @Component({
@@ -24,6 +25,8 @@ export class ProjectsComponent implements OnInit {
     // Missatge d'error si la petició falla
     errorMessage: string = '';
 
+    isLoggedIn$!: Observable<boolean>;
+
     constructor(
         private projectService: ProjectService,
         private authService: AuthService,
@@ -32,6 +35,7 @@ export class ProjectsComponent implements OnInit {
 
     // S'executa quan el component s'inicialitza: carrega els projectes
     ngOnInit(): void {
+        this.isLoggedIn$ = this.authService.isLoggedIn$();
         this.loadProjects();
     }
 
@@ -62,10 +66,5 @@ export class ProjectsComponent implements OnInit {
             return 'https://placehold.co/600x400/16213e/a8b2d8?text=Sense+imatge';
         }
         return this.projectService.getImageUrl(imageName);
-    }
-
-    // Getter per comprovar si l'usuari està autenticat (per mostrar el botó "Nou Projecte")
-    get isLoggedIn(): boolean {
-        return this.authService.isLoggedIn();
     }
 }
