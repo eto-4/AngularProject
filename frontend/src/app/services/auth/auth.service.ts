@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+import { login, logout } from '../../store/auth.actions';
+import { selectIsLoggedIn, selectUsername } from '../../store/auth.selectors';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthService {
 
-    // Clau referencial que es fa servir per guardar l'usuari a localStorage
-    private readonly STORAGE_KEY = 'current_user';
-
     // Usuaris disponibles hardcodejats.
     private readonly VALID_USERS = [
         { username: 'admin', password: '1234' },
     ];
 
-    constructor() {}
+    constructor(private store: Store) {}
 
     // login - Retorna true  si les credencials só correctes
     login(username: string, password: string): boolean {
@@ -23,44 +24,25 @@ export class AuthService {
         );
 
         if (found) {
-            // Guardem l'usuari al localStorage per mantenir la sessió
-            localStorage.setItem(
-                this.STORAGE_KEY,
-                JSON.stringify(
-                    {
-                        username: found.username
-                    }
-                )
-            );
+            // Guardem l'action login al Store
+            this.store.dispatch(login({ username: found.username }));
             return true;
         }
         return false;
     }
 
-    // logout - Tanca la sessió eliminant l'usuari del localStorage
+    // logout - Dispatxa l'action logout al Store
     logout(): void {
-        localStorage.removeItem(
-            this.STORAGE_KEY
-        );
+        this.store.dispatch(logout());
     }
 
-    // isLoggedIn - Comprova si es un usuari autenticat
-    isLoggedIn(): boolean {
-        return localStorage.getItem(
-            this.STORAGE_KEY
-        ) !== null;
+    // isLoggedIn - Retorna un observable amb l'estat isLoggedIn del Store
+    isLoggedIn(): Observable<boolean> {
+        return this.store.select(selectIsLoggedIn);
     }
 
-    /**
-     * getCurrentUser - Retorna el nom de l'usuari autenticat,
-     *                  o null si no hi ha sessió.
-     * */ 
-    getCurrentUser(): string | null {
-        const data = localStorage.getItem(
-            this.STORAGE_KEY
-        );
-        if (!data) return null;
-
-        return JSON.parse(data).username;
+    // getCurrentUser - Retorna un Observable amb el username del Store
+    getCurrentUser(): Observable<string | null> {
+        return this.store.select(selectUsername);
     }
 }
