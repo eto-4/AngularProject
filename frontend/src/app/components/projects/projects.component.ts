@@ -25,7 +25,7 @@ export class ProjectsComponent implements OnInit {
     // Missatge d'error si la petició falla
     errorMessage: string = '';
 
-    isLoggedIn$!: Observable<boolean>;
+    isLoggedIn: boolean = false;
 
     constructor(
         private projectService: ProjectService,
@@ -33,10 +33,12 @@ export class ProjectsComponent implements OnInit {
         private cdr: ChangeDetectorRef
     ) {}
 
-    // S'executa quan el component s'inicialitza: carrega els projectes
     ngOnInit(): void {
-        this.isLoggedIn$ = this.authService.isLoggedIn$();
-        this.loadProjects();
+      this.authService.isLoggedIn$().subscribe(value => {
+        this.isLoggedIn = value;
+        this.cdr.detectChanges();
+      });
+      this.loadProjects();
     }
 
     // Crida al servei per obtenir tots els projectes del backend

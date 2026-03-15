@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { distinctUntilChanged, Observable } from 'rxjs';
 import { login, logout } from '../../store/auth.actions';
 import { selectIsLoggedIn, selectUsername } from '../../store/auth.selectors';
 
@@ -38,11 +38,15 @@ export class AuthService {
 
     // isLoggedIn - Retorna un observable amb l'estat isLoggedIn del Store
     isLoggedIn$(): Observable<boolean> {
-        return this.store.select(selectIsLoggedIn);
+        return this.store.select(selectIsLoggedIn).pipe(
+            distinctUntilChanged()
+        );
     }
 
     // getCurrentUser - Retorna un Observable amb el username del Store
     getCurrentUser$(): Observable<string | null> {
-        return this.store.select(selectUsername);
+        return this.store.select(selectUsername).pipe(
+        distinctUntilChanged()
+        );
     }
 }

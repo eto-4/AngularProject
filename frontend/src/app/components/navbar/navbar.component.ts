@@ -1,7 +1,6 @@
 import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
 
 // Component del menú de navegació superior
@@ -43,6 +42,13 @@ export class NavbarComponent implements OnInit {
     // Tanca la sessió i redirigeix a /about
     logout(): void {
         this.authService.logout();
-        this.router.navigate(['/about']);
+        this.isLoggedIn = false;
+        this.currentUser = null;
+        this.cdr.detectChanges();
+        
+        // Esperem un tick abans de navegar
+        setTimeout(() => {
+          this.router.navigate(['/about']);
+        }, 50);
     }
 }

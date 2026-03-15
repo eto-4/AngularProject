@@ -1,8 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { CommonModule } from '@angular/common';
-import { Observable } from 'rxjs';
 
 // Component de la pàgina principal / presentació del portfolio
 @Component({
@@ -16,11 +15,18 @@ import { Observable } from 'rxjs';
     styleUrl: './about.component.css'
 })
 export class AboutComponent implements OnInit {
-    isLoggedIn$!: Observable<boolean>;
+    isLoggedIn: boolean = false;
 
-    constructor(private authService: AuthService) {}
+    constructor(
+        private authService: AuthService,
+        private cdr: ChangeDetectorRef
+    ) {}
 
     ngOnInit(): void {
-        this.isLoggedIn$ = this.authService.isLoggedIn$()
+        this.authService.isLoggedIn$().subscribe(value => {
+            console.log('isLoggedIn:', value);
+            this.isLoggedIn = value;
+            this.cdr.detectChanges();
+        });
     }
 }

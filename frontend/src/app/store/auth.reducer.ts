@@ -14,8 +14,9 @@ export const authReducer = createReducer(
 
     // Quan es fa logout; tornem a l'estat inicial.
     on(logout, (state)=> ({
+
         ...state,
-        isLoggedIn: true,
+        isLoggedIn: false,
         username: null
     }))
 );
