@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthService } from '../../services/auth/auth.service';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
 
 // Component de la pàgina principal / presentació del portfolio
 @Component({
@@ -14,11 +15,12 @@ import { CommonModule } from '@angular/common';
     templateUrl: './about.component.html',
     styleUrl: './about.component.css'
 })
-export class AboutComponent {
+export class AboutComponent implements OnInit {
+    isLoggedIn$!: Observable<boolean>;
+
     constructor(private authService: AuthService) {}
 
-    // S'usa al template per mostrar el botó "Nou Projecte" si l'usuari és autenticat
-    get isLoggedIn(): boolean {
-        return this.authService.isLoggedIn();
+    ngOnInit(): void {
+        this.isLoggedIn$ = this.authService.isLoggedIn$()
     }
 }

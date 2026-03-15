@@ -37,12 +37,12 @@ export class AuthService {
     }
 
     // isLoggedIn - Retorna un observable amb l'estat isLoggedIn del Store
-    isLoggedIn(): Observable<boolean> {
+    isLoggedIn$(): Observable<boolean> {
         return this.store.select(selectIsLoggedIn);
     }
 
     // getCurrentUser - Retorna un Observable amb el username del Store
-    getCurrentUser(): Observable<string | null> {
+    getCurrentUser$(): Observable<string | null> {
         return this.store.select(selectUsername);
     }
 }
