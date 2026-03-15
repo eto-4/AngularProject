@@ -17,7 +17,7 @@ import { AuthService } from '../../services/auth/auth.service';
   templateUrl: './navbar.component.html',
   styleUrl: './navbar.component.css'
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
     // Observables del Store
     isLoggedIn$!: Observable<boolean>;
     currentUser$!: Observable<string | null>;
