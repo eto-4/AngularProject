@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import { Observable } from 'rxjs';
 import { AuthService } from '../../services/auth/auth.service';
 
 // Component del menú de navegació superior
@@ -17,25 +18,24 @@ import { AuthService } from '../../services/auth/auth.service';
   styleUrl: './navbar.component.css'
 })
 export class NavbarComponent {
+    // Observables del Store
+    isLoggedIn$!: Observable<boolean>;
+    currentUser$!: Observable<string | null>;
 
-  constructor(
-    private authService: AuthService,
-    private router: Router
-  ) {}
+    constructor(
+        private authService: AuthService,
+        private router: Router
+    ) {}
 
-  // Comprova si hi ha sessió activa (Es fa servir al template amb *ngIf)
-  get isLoggedIn(): boolean {
-    return this.authService.isLoggedIn();
-  }
+    ngOnInit(): void {
+        // Subscrivim els observables dels Store
+        this.isLoggedIn$ = this.authService.isLoggedIn();
+        this.currentUser$ = this.authService.getCurrentUser();
+    }
 
-  // Retorna el nom de l'usuari autenticat (Es fa servir al template)
-  get currentUser(): string | null {
-    return this.authService.getCurrentUser();
-  }
-
-  // Tanca la sessió i redirigeix a /about
-  logout(): void {
-    this.authService.logout();
-    this.router.navigate(['/about']);
-  }
+    // Tanca la sessió i redirigeix a /about
+    logout(): void {
+        this.authService.logout();
+        this.router.navigate(['/about']);
+    }
 }
