@@ -92,11 +92,11 @@ export class EditComponent implements OnInit {
             this.selectedImage = input.files[0];
             const reader = new FileReader();
             reader.onload = (e) => {
-              this.imagePreview = e.target?.result as string;
+                this.imagePreview = e.target?.result as string;
+                this.cdr.detectChanges();
             };
             reader.readAsDataURL(this.selectedImage);
         }
-        this.cdr.detectChanges();
     }
 
     getCurrentImageUrl(): string {

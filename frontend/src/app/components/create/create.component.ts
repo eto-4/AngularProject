@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectorRef } from '@angular/core';
 import { Router, RouterLink } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule, FormBuilder, FormGroup, Validators } from '@angular/forms';
@@ -33,7 +33,8 @@ export class CreateComponent {
     constructor(
         private fb: FormBuilder,
         private projectService: ProjectService,
-        private router: Router
+        private router: Router,
+        private cdr: ChangeDetectorRef
     ) {
         this.projectForm = this.fb.group({
             // Camps obligatoris amb Validators.required
@@ -55,6 +56,7 @@ export class CreateComponent {
             const reader = new FileReader();
             reader.onload = (e) => {
                 this.imagePreview = e.target?.result as string;
+                this.cdr.detectChanges();
             };
             reader.readAsDataURL(this.selectedImage);
         }
