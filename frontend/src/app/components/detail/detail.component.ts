@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ProjectService } from '../../services/project/project.service';
 import { AuthService } from '../../services/auth/auth.service';
 import { Project } from '../../models/project.model';
+import { Observable } from 'rxjs';
 
 // Component que mostra el detall complet d'un projecte
 @Component({
@@ -22,6 +23,7 @@ export class DetailComponent implements OnInit {
     errorMessage: string = '';
     // Controla si es mostra el diàleg de confirmació d'eliminació
     showDeleteConfirm: boolean = false;
+    isLoggedIn$!: Observable<boolean>;
 
     constructor(
         private route: ActivatedRoute,
@@ -32,6 +34,7 @@ export class DetailComponent implements OnInit {
     ) {}
 
     ngOnInit(): void {
+        this.isLoggedIn$ = this.authService.isLoggedIn$();
         // Llegim el paràmetre :id de la URL i carreguem el projecte
         const id = this.route.snapshot.paramMap.get('id');
         if (id) {
@@ -92,7 +95,4 @@ export class DetailComponent implements OnInit {
         });
     }
 
-    get isLoggedIn(): boolean {
-      return this.authService.isLoggedIn();
-    }
 }

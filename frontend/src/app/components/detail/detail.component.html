@@ -67,7 +67,7 @@
                     </div>
                 
                     <!-- Botons d'acció (només si l'usuari és autenticat) -->
-                    <div class="d-flex gap-3 mt-4 flex-wrap" *ngIf="isLoggedIn">
+                    <div class="d-flex gap-3 mt-4 flex-wrap" *ngIf="isLoggedIn$ | async">
                         <a [routerLink]="['/edit', project._id]" class="btn btn-edit">
                             <i class="bi bi-pencil-fill me-2"></i>Editar
                         </a>
