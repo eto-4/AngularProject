@@ -10,7 +10,11 @@ import { Project } from '../../models/project.model';
 @Component({
     selector: 'app-edit',
     standalone: true,
-    imports: [CommonModule, ReactiveFormsModule, RouterLink],
+    imports: [
+        CommonModule, 
+        ReactiveFormsModule, 
+        RouterLink
+    ],
     templateUrl: './edit.component.html',
     styleUrl: './edit.component.css'
 })
@@ -92,6 +96,7 @@ export class EditComponent implements OnInit {
             };
             reader.readAsDataURL(this.selectedImage);
         }
+        this.cdr.detectChanges();
     }
 
     getCurrentImageUrl(): string {
