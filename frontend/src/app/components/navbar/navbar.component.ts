@@ -29,8 +29,8 @@ export class NavbarComponent implements OnInit {
 
     ngOnInit(): void {
         // Subscrivim els observables dels Store
-        this.isLoggedIn$ = this.authService.isLoggedIn();
-        this.currentUser$ = this.authService.getCurrentUser();
+        this.isLoggedIn$ = this.authService.isLoggedIn$();
+        this.currentUser$ = this.authService.getCurrentUser$();
     }
 
     // Tanca la sessió i redirigeix a /about
