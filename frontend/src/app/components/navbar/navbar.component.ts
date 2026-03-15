@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ChangeDetectorRef } from '@angular/core';
 import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { Observable } from 'rxjs';
@@ -24,7 +24,8 @@ export class NavbarComponent implements OnInit {
 
     constructor(
         private authService: AuthService,
-        private router: Router
+        private router: Router,
+        private cdr: ChangeDetectorRef
     ) {}
 
     ngOnInit(): void {
@@ -36,6 +37,7 @@ export class NavbarComponent implements OnInit {
     // Tanca la sessió i redirigeix a /about
     logout(): void {
         this.authService.logout();
+        this.cdr.detectChanges();
         this.router.navigate(['/about']);
     }
 }
